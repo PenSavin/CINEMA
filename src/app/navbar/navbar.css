@@ -1,0 +1,45 @@
+.flag-icon {
+  display: inline-flex;
+  width: 1.45rem;
+  height: 1.45rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 9999px;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 18%);
+}
+
+.flag-icon-en {
+  background:
+    linear-gradient(90deg, transparent 40%, #fff 40% 60%, transparent 60%),
+    linear-gradient(0deg, transparent 40%, #fff 40% 60%, transparent 60%),
+    linear-gradient(90deg, transparent 45%, #c8102e 45% 55%, transparent 55%),
+    linear-gradient(0deg, transparent 45%, #c8102e 45% 55%, transparent 55%),
+    #012169;
+}
+
+.flag-icon-kh {
+  background: linear-gradient(0deg, #032ea1 0 25%, #e00025 25% 75%, #032ea1 75% 100%);
+}
+
+.flag-icon-kh::after {
+  content: "";
+  width: 0.65rem;
+  height: 0.3rem;
+  background: #fff;
+  clip-path: polygon(50% 0, 100% 38%, 100% 100%, 0 100%, 0 38%);
+}
+
+.flag-icon-cn {
+  background: #de2910;
+}
+
+.flag-icon-cn::after {
+  content: "*";
+  color: #ffde00;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  transform: translate(-0.15rem, -0.15rem);
+}

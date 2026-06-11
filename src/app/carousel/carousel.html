@@ -1,0 +1,73 @@
+<section class="relative flex min-h-screen items-center justify-center px-4 py-32 sm:px-6 lg:px-10">
+  <div
+    class="absolute inset-0 scale-110 bg-cover bg-center blur-xl transition-all duration-700"
+    [style.background-image]="'url(' + movies[currentIndex].image + ')'"
+    aria-hidden="true"
+  ></div>
+  <div class="absolute inset-0 bg-black/75" aria-hidden="true"></div>
+  <div
+    class="absolute left-1/2 top-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange-500/25 blur-3xl"
+    aria-hidden="true"
+  ></div>
+  <div
+    class="absolute bottom-[-8rem] right-[-6rem] h-96 w-96 rounded-full bg-amber-300/20 blur-3xl"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative z-10 mx-auto w-full max-w-6xl pt-10">
+    <article class="group relative mx-auto aspect-[16/10] max-h-[660px] min-h-[420px] overflow-hidden rounded-3xl border border-white/15 bg-white/10 shadow-2xl shadow-black/70 backdrop-blur-xl sm:aspect-[16/8]">
+      <img
+        class="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+        [src]="movies[currentIndex].image"
+        [alt]="movies[currentIndex].title"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/10"></div>
+
+      <div class="absolute inset-x-0 bottom-0 flex flex-col gap-5 p-6 sm:p-10 lg:p-12">
+        <div class="max-w-3xl">
+          <p class="mb-3 text-xs font-black uppercase tracking-[0.3em] text-amber-300">Now Showing</p>
+          <h1 class="text-4xl font-black leading-tight text-white sm:text-5xl lg:text-7xl">
+            {{ movies[currentIndex].title }}
+          </h1>
+          <p class="mt-4 max-w-2xl text-sm leading-6 text-white/75 sm:text-base">
+            {{ movies[currentIndex].description }}
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <button class="rounded-full bg-red-600 px-7 py-3 text-sm font-black uppercase tracking-wide text-white shadow-xl shadow-red-950/50 transition hover:-translate-y-0.5 hover:bg-red-500" type="button">
+            Book Now
+          </button>
+
+          <div class="flex items-center gap-3">
+            <button class="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white shadow-lg backdrop-blur transition hover:border-amber-300/50 hover:bg-white/20" (click)="prevSlide()" type="button" aria-label="Previous movie">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                <path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <button class="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-black/35 text-white shadow-lg backdrop-blur transition hover:border-amber-300/50 hover:bg-white/20" (click)="nextSlide()" type="button" aria-label="Next movie">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                <path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          @for (movie of movies; track movie.title; let i = $index) {
+            <button
+              class="h-2.5 rounded-full transition-all duration-300"
+              [class.w-10]="i === currentIndex"
+              [class.w-2.5]="i !== currentIndex"
+              [class.bg-amber-300]="i === currentIndex"
+              [class.bg-white/35]="i !== currentIndex"
+              (click)="goToSlide(i)"
+              type="button"
+              [attr.aria-label]="'Show ' + movie.title"
+            ></button>
+          }
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

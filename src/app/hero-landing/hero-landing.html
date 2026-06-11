@@ -1,0 +1,92 @@
+<div class="container mx-auto px-4 mt-5">
+
+  <!-- Tabs -->
+  <div class="flex items-center gap-8 mb-10 mt-15">
+
+    <button (click)="setTab('now')" class="transition" [class.text-white]="activeTab === 'now'"
+      [class.text-gray-400]="activeTab !== 'now'" [class.font-bold]="activeTab === 'now'">
+
+      <h2 class="text-2xl md:text-4xl cursor-pointer">
+        Now Showing
+      </h2>
+
+    </button>
+
+    <span class="w-px h-10 bg-white/30"></span>
+    <button (click)="setTab('coming')" class="transition" [class.text-white]="activeTab === 'coming'"
+      [class.text-gray-400]="activeTab !== 'coming'" [class.font-bold]="activeTab === 'coming'">
+
+      <h2 class="text-2xl md:text-4xl cursor-pointer">
+        Coming Soon
+      </h2>
+
+    </button>
+
+  </div>
+
+ <!-- Date Selector -->
+<div class="flex justify-center gap-4 overflow-x-auto pb-4 mb-10 text-white">
+
+  @for (day of days; track day.date) {
+
+    <div
+      (click)="selectedDate = day.date"
+      class="min-w-[100px] rounded-xl border p-4 text-center flex-shrink-0 cursor-pointer transition duration-300"
+      [class.bg-blue-600]="selectedDate === day.date"
+      [class.border-blue-600]="selectedDate === day.date"
+      [class.border-white/20]="selectedDate !== day.date"
+      [class.hover:bg-white/10]="selectedDate !== day.date">
+
+      <!-- Weekday -->
+      <p class="text-sm text-gray-400">
+        {{ day.date | date:'EEE' }}
+      </p>
+
+      <!-- Day number -->
+      <p class="text-2xl font-bold">
+        {{ day.date | date:'dd' }}
+      </p>
+
+    </div>
+
+  }
+
+</div>
+
+  <!-- Empty State -->
+  @if (filteredMovies.length === 0) {
+
+  <div class="text-center py-20 text-gray-400">
+    No movies available
+  </div>
+
+  }
+
+  <!-- Movies Grid -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+  @for (movie of filteredMovies; track movie.id) {
+    <div class="w-90 h-150 bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition duration-300 flex flex-col">
+
+      <img [src]="movie.image" [alt]="movie.title" class="w-full h-[420px] object-cover flex-shrink-0">
+
+      <div class="p-4 flex flex-col flex-grow">
+
+        <h3 class="text-lg font-semibold text-white mb-2">
+          {{ movie.title }}
+        </h3>
+
+        <p class="text-sm text-gray-400 mb-4">
+          {{ movie.releaseDate | date:'mediumDate' }}
+        </p>
+
+        <button class="w-full mt-auto bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition cursor-pointer">
+          View Details
+        </button>
+
+      </div>
+
+    </div>
+  }
+</div>
+
+</div>
