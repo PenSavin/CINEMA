@@ -1,0 +1,131 @@
+<nav class="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-black/40 shadow-2xl backdrop-blur-xl">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between sm:h-20">
+      <div class="flex-1"></div>
+
+      <div class="flex-1 flex justify-center">
+        <a href="#" aria-label="home" class="flex items-center">
+          <img src="/Logo.png" alt="Logo" class="h-10 w-10 object-contain sm:h-14 sm:w-14" />
+        </a>
+      </div>
+
+      <div class="flex-1 flex justify-end">
+        <select
+          class="h-9 rounded-full border border-white/10 bg-black/40 px-3 text-xs font-semibold text-white outline-none transition focus:border-amber-300/60 sm:h-10 sm:px-4 sm:text-sm"
+          aria-label="Language selector">
+          <option>EN</option>
+          <option>KH</option>
+          <option>CN</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="min-h-screen flex items-center justify-center bg-cover bg-center relative px-3 pb-6 pt-20 sm:px-6 sm:pt-24"
+  style="background-image: url('assets/cinema-seat.jpg');">
+
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-md"></div>
+
+  <div
+    class="relative z-10 w-full max-w-4xl flex flex-col rounded-2xl overflow-hidden shadow-2xl backdrop-blur-xl border border-white/10 sm:h-[550px] sm:flex-row">
+
+    <div class="hidden md:block w-1/2 bg-black/30">
+      <img src="assets/cinema-seat.jpg" class="h-full w-full object-cover" />
+    </div>
+
+    <div class="w-full md:w-1/2 p-5 sm:p-8 lg:p-10 text-white bg-black/40 flex flex-col">
+
+      <div class="flex gap-4 text-lg font-semibold mb-4 sm:gap-6 sm:text-2xl sm:mb-6">
+        <button (click)="activeTab.set('login')" class="cursor-pointer border-red-600 pb-1 transition-colors"
+          [class.border-b-2]="activeTab() === 'login'" [class.text-white]="activeTab() === 'login'"
+          [class.text-white/40]="activeTab() !== 'login'">
+          Log In
+        </button>
+
+        <button (click)="activeTab.set('signup')" class="cursor-pointer border-red-600 pb-1 transition-colors"
+          [class.border-b-2]="activeTab() === 'signup'" [class.text-white]="activeTab() === 'signup'"
+          [class.text-white/40]="activeTab() !== 'signup'">
+          Sign Up
+        </button>
+      </div>
+
+      @if(activeTab() === 'login') {
+      <p class="text-xs text-white/70 mb-4 sm:text-sm sm:mb-6">You can use your phone number or username</p>
+
+      <div class="flex bg-white/10 p-1 rounded-full mb-4 sm:mb-6">
+        <button (click)="loginMethod.set('username')" class="cursor-pointer flex-1 rounded-full py-2 text-xs transition sm:text-sm"
+          [class.bg-red-600]="loginMethod() === 'username'">
+          Username
+        </button>
+
+        <button (click)="loginMethod.set('phone')" class="cursor-pointer flex-1 rounded-full py-2 text-xs transition sm:text-sm"
+          [class.bg-red-600]="loginMethod() === 'phone'">
+          Phone Number
+        </button>
+      </div>
+
+      @if(loginMethod()==='username'){
+      <label class="text-xs text-white/70 sm:text-sm">Username</label>
+      <div class="flex items-center bg-white/10 rounded-lg px-3 py-2.5 mt-1 mb-3 sm:py-2 sm:mb-4">
+        <input type="text" class="w-full bg-transparent outline-none text-white text-sm" placeholder="Enter username" />
+      </div>
+
+      <label class="text-xs text-white/70 sm:text-sm">Password</label>
+      <div class="flex items-center bg-white/10 rounded-lg px-3 py-2.5 mt-1 mb-4 sm:py-2 sm:mb-6">
+        <input type="password" class="w-full bg-transparent outline-none text-white text-sm" placeholder="Enter password" />
+      </div>
+
+      <a href=""><span class="text-white flex justify-end text-sm hover:text-red-500">Forgot Password?</span></a>
+
+      <div class="mt-4 sm:mt-auto">
+        <button class="w-full bg-gray-500 hover:bg-red-600 py-3 rounded-full text-sm font-semibold transition cursor-pointer sm:text-base">Continue</button>
+      </div>
+      }
+      @else {
+      <label class="text-xs text-white/70 sm:text-sm">Phone Number</label>
+      <div class="flex items-center bg-white/10 rounded-lg px-3 py-2.5 mt-1 mb-4 sm:py-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 72 72" class="shrink-0 sm:w-9 sm:h-9">
+          <path d="M0 0h72v72H0z" fill="none" />
+          <path fill="#d22f27" d="M5 17h62v38H5z" />
+          <path fill="#1e50a0" d="M5 45h62v10H5zm0-28h62v10H5z" />
+          <path fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+            d="M45.882 42H26.118l2.117-4.235h15.53zm-7.058-6.353h-5.648L36 30zm4.235 0h-3.53l1.324-2.823h.882zm-10.588 0h-3.53l1.324-2.823h.882zm-4.236 0h15.529v2.118H28.235z" />
+          <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M5 17h62v38H5z" />
+        </svg>
+
+        <span class="text-white/50 mx-2 text-sm shrink-0">+855</span>
+        <input type="text" class="w-full bg-transparent outline-none text-white text-sm" placeholder="Enter phone number" />
+      </div>
+
+      <div class="mt-4 sm:mt-auto">
+        <button class="w-full bg-gray-500 hover:bg-red-600 py-3 rounded-full text-sm font-semibold transition cursor-pointer sm:text-base">Continue</button>
+      </div>
+
+      }
+      } @else {
+      <p class="text-xs text-white/70 mb-4 sm:text-sm sm:mb-6">Enter Your Phone Number To Get Verification Code</p>
+
+      <label class="text-xs text-white/70 sm:text-sm">Phone Number</label>
+      <div class="flex items-center bg-white/10 rounded-lg px-3 py-2.5 mt-1 mb-4 sm:py-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 72 72" class="shrink-0 sm:w-9 sm:h-9">
+          <path d="M0 0h72v72H0z" fill="none" />
+          <path fill="#d22f27" d="M5 17h62v38H5z" />
+          <path fill="#1e50a0" d="M5 45h62v10H5zm0-28h62v10H5z" />
+          <path fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+            d="M45.882 42H26.118l2.117-4.235h15.53zm-7.058-6.353h-5.648L36 30zm4.235 0h-3.53l1.324-2.823h.882zm-10.588 0h-3.53l1.324-2.823h.882zm-4.236 0h15.529v2.118H28.235z" />
+          <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M5 17h62v38H5z" />
+        </svg>
+        <span class="text-white/50 mx-2 text-sm shrink-0">+855</span>
+        <input type="text" class="w-full bg-transparent outline-none text-white text-sm" placeholder="Enter phone number" />
+      </div>
+
+      <div class="mt-4 sm:mt-auto">
+        <button class="w-full bg-gray-500 hover:bg-red-600 py-3 rounded-full text-sm font-semibold transition cursor-pointer sm:text-base">Continue</button>
+      </div>
+      }
+    </div>
+  </div>
+</div>

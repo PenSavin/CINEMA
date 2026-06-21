@@ -1,15 +1,13 @@
 import { Component, signal } from '@angular/core';
-import { Carousel } from './carousel/carousel';
-import { Navbar } from './navbar/navbar';
-import { HeroLanding } from './hero-landing/hero-landing';
-import { LoginForm } from './login-form/login-form';
-import { RouterModule } from '@angular/router';
-import {routesConfig} from "./routes"
+import { RouterOutlet } from '@angular/router';
+// 1. Import the module
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Navbar, Carousel, HeroLanding, LoginForm, RouterModule],
+  // 2. Add it to the imports array
+  imports: [RouterOutlet, MatTabsModule],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

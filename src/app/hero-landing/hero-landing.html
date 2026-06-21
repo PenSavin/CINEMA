@@ -24,18 +24,15 @@
 
   </div>
 
- <!-- Date Selector -->
-<div class="flex justify-center gap-4 overflow-x-auto pb-4 mb-10 text-white">
+  <!-- Date Selector -->
+  <div class="flex justify-center gap-4 overflow-x-auto pb-4 mb-10 text-white">
 
-  @for (day of days; track day.date) {
+    @for (day of days; track day.date) {
 
-    <div
-      (click)="selectedDate = day.date"
+    <div (click)="selectedDate = day.date"
       class="min-w-[100px] rounded-xl border p-4 text-center flex-shrink-0 cursor-pointer transition duration-300"
-      [class.bg-blue-600]="selectedDate === day.date"
-      [class.border-blue-600]="selectedDate === day.date"
-      [class.border-white/20]="selectedDate !== day.date"
-      [class.hover:bg-white/10]="selectedDate !== day.date">
+      [class.bg-blue-600]="selectedDate === day.date" [class.border-blue-600]="selectedDate === day.date"
+      [class.border-white/20]="selectedDate !== day.date" [class.hover:bg-white/10]="selectedDate !== day.date">
 
       <!-- Weekday -->
       <p class="text-sm text-gray-400">
@@ -49,9 +46,9 @@
 
     </div>
 
-  }
+    }
 
-</div>
+  </div>
 
   <!-- Empty State -->
   @if (filteredMovies.length === 0) {
@@ -63,15 +60,15 @@
   }
 
   <!-- Movies Grid -->
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-  @for (movie of filteredMovies; track movie.id) {
-    <div class="w-90 h-150 bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition duration-300 flex flex-col">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    @for (movie of filteredMovies; track movie.id) {
+    <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition duration-300 flex flex-col">
 
-      <img [src]="movie.image" [alt]="movie.title" class="w-full h-[420px] object-cover flex-shrink-0">
+      <img [src]="movie.image" [alt]="movie.title" class="w-full aspect-[2/3] object-cover">
 
       <div class="p-4 flex flex-col flex-grow">
 
-        <h3 class="text-lg font-semibold text-white mb-2">
+        <h3 class="text-lg font-semibold text-white mb-2 line-clamp-2">
           {{ movie.title }}
         </h3>
 
@@ -79,14 +76,15 @@
           {{ movie.releaseDate | date:'mediumDate' }}
         </p>
 
-        <button class="w-full mt-auto bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition cursor-pointer">
+        <button
+          class="w-full mt-auto bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition cursor-pointer">
           View Details
         </button>
 
       </div>
 
     </div>
-  }
-</div>
+    }
+  </div>
 
 </div>
