@@ -50,42 +50,79 @@
         </button>
       </div>
 
-      @if(activeTab() === 'login') {
-      <p class="text-xs text-white/70 mb-4 sm:text-sm sm:mb-6">You can use your phone number or username</p>
+      @if (activeTab() === 'login') {
 
-      <div class="flex bg-white/10 p-1 rounded-full mb-4 sm:mb-6">
-        <button (click)="loginMethod.set('username')" class="cursor-pointer flex-1 rounded-full py-2 text-xs transition sm:text-sm"
+      <p class="mb-6 text-sm text-white/70">
+        You can use your phone number or username
+      </p>
+
+      <!-- Login Method -->
+      <div class="mb-6 flex rounded-full bg-white/10 p-1">
+        <button (click)="loginMethod.set('username')" class="flex-1 rounded-full py-2 text-sm transition cursor-pointer"
           [class.bg-red-600]="loginMethod() === 'username'">
           Username
         </button>
 
-        <button (click)="loginMethod.set('phone')" class="cursor-pointer flex-1 rounded-full py-2 text-xs transition sm:text-sm"
+        <button (click)="loginMethod.set('phone')" class="flex-1 rounded-full py-2 text-sm transition cursor-pointer"
           [class.bg-red-600]="loginMethod() === 'phone'">
           Phone Number
         </button>
       </div>
 
-      @if(loginMethod()==='username'){
-      <label class="text-xs text-white/70 sm:text-sm">Username</label>
-      <div class="flex items-center bg-white/10 rounded-lg px-3 py-2.5 mt-1 mb-3 sm:py-2 sm:mb-4">
-        <input type="text" class="w-full bg-transparent outline-none text-white text-sm" placeholder="Enter username" />
+      @if (loginMethod() === 'username') {
+
+      <!-- Username -->
+      <div class="mb-4">
+        <label class="mb-2 block text-sm text-white/70">
+          Username
+        </label>
+
+        <input type="text" name="username" [(ngModel)]="username"
+          class="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white outline-none transition focus:border-red-500"
+          placeholder="Enter username" />
+
+        @if (username.length > 0 && username.length < 4) { <p class="mt-2 text-sm text-red-500">
+          Username must be at least 4 characters
+          </p>
+          }
       </div>
 
-      <label class="text-xs text-white/70 sm:text-sm">Password</label>
-      <div class="flex items-center bg-white/10 rounded-lg px-3 py-2.5 mt-1 mb-4 sm:py-2 sm:mb-6">
-        <input type="password" class="w-full bg-transparent outline-none text-white text-sm" placeholder="Enter password" />
+      <!-- Password -->
+      <div class="mb-4">
+        <label class="mb-2 block text-sm text-white/70">
+          Password
+        </label>
+
+        <input type="password" name="password" [(ngModel)]="password"
+          class="w-full rounded-xl border border-white/10 bg-white/10 px-4 py-3 text-white outline-none transition focus:border-red-500"
+          placeholder="Enter password" />
+
+        @if (password.length > 0 && password.length < 8) { <p class="mt-2 text-sm text-red-500">
+          Password must be at least 8 characters
+          </p>
+          }
       </div>
 
-      <a href=""><span class="text-white flex justify-end text-sm hover:text-red-500">Forgot Password?</span></a>
-
-      <div class="mt-4 sm:mt-auto">
-        <button class="w-full bg-gray-500 hover:bg-red-600 py-3 rounded-full text-sm font-semibold transition cursor-pointer sm:text-base">Continue</button>
+      <!-- Forgot Password -->
+      <div class="mb-6 flex justify-end">
+        <a href="#" class="text-sm text-white/70 transition hover:text-red-500">
+          Forgot Password?
+        </a>
       </div>
+
+      <!-- Submit -->
+      <button
+        class="w-full rounded-xl bg-red-600 py-3 font-semibold text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:bg-gray-600"
+        [disabled]="username.length < 4 || password.length < 8">
+        Continue
+      </button>
+
       }
       @else {
       <label class="text-xs text-white/70 sm:text-sm">Phone Number</label>
       <div class="flex items-center bg-white/10 rounded-lg px-3 py-2.5 mt-1 mb-4 sm:py-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 72 72" class="shrink-0 sm:w-9 sm:h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 72 72"
+          class="shrink-0 sm:w-9 sm:h-9">
           <path d="M0 0h72v72H0z" fill="none" />
           <path fill="#d22f27" d="M5 17h62v38H5z" />
           <path fill="#1e50a0" d="M5 45h62v10H5zm0-28h62v10H5z" />
@@ -96,11 +133,13 @@
         </svg>
 
         <span class="text-white/50 mx-2 text-sm shrink-0">+855</span>
-        <input type="text" class="w-full bg-transparent outline-none text-white text-sm" placeholder="Enter phone number" />
+        <input type="text" class="w-full bg-transparent outline-none text-white text-sm"
+          placeholder="Enter phone number" />
       </div>
 
       <div class="mt-4 sm:mt-auto">
-        <button class="w-full bg-gray-500 hover:bg-red-600 py-3 rounded-full text-sm font-semibold transition cursor-pointer sm:text-base">Continue</button>
+        <button
+          class="w-full bg-gray-500 hover:bg-red-600 py-3 rounded-full text-sm font-semibold transition cursor-pointer sm:text-base">Continue</button>
       </div>
 
       }
@@ -109,7 +148,8 @@
 
       <label class="text-xs text-white/70 sm:text-sm">Phone Number</label>
       <div class="flex items-center bg-white/10 rounded-lg px-3 py-2.5 mt-1 mb-4 sm:py-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 72 72" class="shrink-0 sm:w-9 sm:h-9">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 72 72"
+          class="shrink-0 sm:w-9 sm:h-9">
           <path d="M0 0h72v72H0z" fill="none" />
           <path fill="#d22f27" d="M5 17h62v38H5z" />
           <path fill="#1e50a0" d="M5 45h62v10H5zm0-28h62v10H5z" />
@@ -119,11 +159,13 @@
             d="M5 17h62v38H5z" />
         </svg>
         <span class="text-white/50 mx-2 text-sm shrink-0">+855</span>
-        <input type="text" class="w-full bg-transparent outline-none text-white text-sm" placeholder="Enter phone number" />
+        <input type="text" class="w-full bg-transparent outline-none text-white text-sm"
+          placeholder="Enter phone number" />
       </div>
 
       <div class="mt-4 sm:mt-auto">
-        <button class="w-full bg-gray-500 hover:bg-red-600 py-3 rounded-full text-sm font-semibold transition cursor-pointer sm:text-base">Continue</button>
+        <button
+          class="w-full bg-gray-500 hover:bg-red-600 py-3 rounded-full text-sm font-semibold transition cursor-pointer sm:text-base">Continue</button>
       </div>
       }
     </div>

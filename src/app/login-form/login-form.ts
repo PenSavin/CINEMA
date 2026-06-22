@@ -1,13 +1,22 @@
 import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './login-form.html',
   styleUrl: './login-form.css',
 })
 export class LoginForm {
-  // Track active tab: 'login' or 'signup'
   activeTab = signal<'login' | 'signup'>('login');
-  loginMethod = signal<'username'|'phone'>('username');
+  loginMethod = signal<'username' | 'phone'>('username');
+
+  submit(){
+    alert('Register Successfully')
+  }
+
+  username = '';
+  password = '';
 }
