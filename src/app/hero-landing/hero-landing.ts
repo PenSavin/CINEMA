@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MOVIES } from '../data/movies';
 import { DAYS } from '../data/days';
 
 @Component({
   selector: 'app-hero-landing',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './hero-landing.html',
   styleUrl: './hero-landing.css',
 })
@@ -17,6 +18,13 @@ export class HeroLanding {
   days = DAYS;
 
   selectedDate = this.days[0].date;
+  searchTerm = '';
+
+  constructor(private route: ActivatedRoute) {
+    this.route.queryParamMap.subscribe((params) => {
+      this.searchTerm = (params.get('search') ?? '').trim().toLowerCase();
+    });
+  }
 
   setTab(tab: 'now' | 'coming') {
     this.activeTab = tab;
@@ -27,6 +35,14 @@ export class HeroLanding {
   }
 
   get filteredMovies() {
+    if (this.searchTerm) {
+      return this.movies.filter((movie) => {
+        const searchableText = `${movie.title} ${movie.description}`.toLowerCase();
+
+        return searchableText.includes(this.searchTerm);
+      });
+    }
+
     const selectedDay = this.days.find((day) => day.date === this.selectedDate);
 
     if (!selectedDay) return [];

@@ -3,12 +3,8 @@
   <!-- Tabs -->
   <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 mb-8 sm:mb-10">
 
-    <button
-      (click)="setTab('now')"
-      class="transition duration-300"
-      [class.text-white]="activeTab === 'now'"
-      [class.text-gray-400]="activeTab !== 'now'"
-      [class.font-bold]="activeTab === 'now'">
+    <button (click)="setTab('now')" class="transition duration-300" [class.text-white]="activeTab === 'now'"
+      [class.text-gray-400]="activeTab !== 'now'" [class.font-bold]="activeTab === 'now'">
 
       <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl cursor-pointer">
         Now Showing
@@ -18,12 +14,8 @@
 
     <span class="hidden sm:block w-px h-10 bg-white/30"></span>
 
-    <button
-      (click)="setTab('coming')"
-      class="transition duration-300"
-      [class.text-white]="activeTab === 'coming'"
-      [class.text-gray-400]="activeTab !== 'coming'"
-      [class.font-bold]="activeTab === 'coming'">
+    <button (click)="setTab('coming')" class="transition duration-300" [class.text-white]="activeTab === 'coming'"
+      [class.text-gray-400]="activeTab !== 'coming'" [class.font-bold]="activeTab === 'coming'">
 
       <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl cursor-pointer">
         Coming Soon
@@ -34,18 +26,14 @@
   </div>
 
   <!-- Date Selector -->
-  <div
-    class="flex gap-3 sm:gap-4 overflow-x-auto pb-4 mb-8 sm:mb-10 scrollbar-thin scrollbar-thumb-white/20">
+  <div class="flex gap-3 sm:gap-4 overflow-x-auto pb-4 mb-8 sm:mb-10 scrollbar-thin scrollbar-thumb-white/20">
 
     @for (day of days; track day.date) {
 
-    <div
-      (click)="selectedDate = day.date"
+    <div (click)="selectedDate = day.date"
       class="min-w-[80px] sm:min-w-[100px] rounded-xl border p-3 sm:p-4 text-center flex-shrink-0 cursor-pointer transition duration-300"
-      [class.bg-blue-600]="selectedDate === day.date"
-      [class.border-blue-600]="selectedDate === day.date"
-      [class.border-white/20]="selectedDate !== day.date"
-      [class.hover:bg-white/10]="selectedDate !== day.date">
+      [class.bg-blue-600]="selectedDate === day.date" [class.border-blue-600]="selectedDate === day.date"
+      [class.border-white/20]="selectedDate !== day.date" [class.hover:bg-white/10]="selectedDate !== day.date">
 
       <p class="text-xs sm:text-sm text-gray-400">
         {{ day.date | date:'EEE' }}
@@ -71,23 +59,17 @@
   }
 
   <!-- Movies Grid -->
-  <div
-    class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+  <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
 
     @for (movie of filteredMovies; track movie.id) {
 
-    <div
-      class="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition duration-300 flex flex-col">
+    <div class="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:scale-105 transition duration-300 flex flex-col">
 
-      <img
-        [src]="movie.image"
-        [alt]="movie.title"
-        class="w-full aspect-[2/3] object-cover">
+      <img [src]="movie.image" [alt]="movie.title" class="w-full aspect-[2/3] object-cover">
 
       <div class="p-3 sm:p-4 flex flex-col flex-grow">
 
-        <h3
-          class="text-sm sm:text-base lg:text-lg font-semibold text-white mb-2 line-clamp-2">
+        <h3 class="text-sm sm:text-base lg:text-lg font-semibold text-white mb-2 line-clamp-2">
           {{ movie.title }}
         </h3>
 
@@ -95,7 +77,7 @@
           {{ movie.releaseDate | date:'mediumDate' }}
         </p>
 
-        <button
+        <button [routerLink]="['/movie', movie.id]"
           class="w-full mt-auto bg-blue-600 hover:bg-blue-700 text-white py-2 text-sm sm:text-base rounded-lg transition cursor-pointer">
           View Details
         </button>

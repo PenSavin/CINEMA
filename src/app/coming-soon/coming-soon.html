@@ -1,0 +1,72 @@
+<main class="min-h-screen bg-black text-white">
+  <app-navbar></app-navbar>
+
+  <section class="min-h-screen px-6 pt-44 pb-20">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid items-center gap-10 lg:grid-cols-[1fr_0.9fr]">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.35em] text-amber-300">Food & Beverage</p>
+          <h1 class="mt-4 max-w-3xl text-4xl font-black uppercase leading-tight sm:text-6xl">
+            Popcorn combo sets
+          </h1>
+          <p class="mt-5 max-w-2xl text-base leading-7 text-white/65">
+            Choose a cinema snack set before the show starts, from classic popcorn to the couple set.
+          </p>
+        </div>
+
+        <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] p-6 shadow-2xl shadow-red-950/20">
+          <div class="absolute inset-x-0 top-0 h-1 bg-red-600"></div>
+
+          <div class="flex items-start justify-between gap-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.3em] text-red-300">Featured</p>
+              <h2 class="mt-3 text-3xl font-black">{{ featuredCombo.name }}</h2>
+            </div>
+            <span class="rounded-full bg-amber-300 px-4 py-2 text-lg font-black text-black">
+              {{ featuredCombo.price }}
+            </span>
+          </div>
+
+          <div class="mt-8 grid gap-3 text-sm font-semibold text-white/80 sm:grid-cols-3">
+            @for (item of featuredCombo.items; track item) {
+            <div class="rounded-xl border border-white/10 bg-black/40 px-4 py-3">
+              {{ item }}
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        @for (combo of comboSets; track combo.name) {
+        <article class="rounded-2xl border border-white/10 bg-white/[0.05] p-6 transition hover:-translate-y-1 hover:border-amber-300/50 hover:bg-white/[0.08]">
+          <div class="flex items-center justify-between gap-4">
+            <span class="rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-200">
+              {{ combo.badge }}
+            </span>
+            <span class="text-xl font-black text-white">{{ combo.price }}</span>
+          </div>
+
+          <h3 class="mt-5 text-2xl font-black">{{ combo.name }}</h3>
+          <p class="mt-3 min-h-14 text-sm leading-6 text-white/60">{{ combo.description }}</p>
+
+          <ul class="mt-5 space-y-3 text-sm text-white/80">
+            @for (item of combo.items; track item) {
+            <li class="flex items-center gap-3">
+              <span class="h-2 w-2 rounded-full bg-red-500"></span>
+              <span>{{ item }}</span>
+            </li>
+            }
+          </ul>
+
+          <button class="mt-6 w-full rounded-full bg-red-600 px-5 py-3 text-sm font-bold uppercase text-white shadow-lg shadow-red-950/40 transition hover:bg-red-500">
+            Order Combo
+          </button>
+        </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <app-footer></app-footer>
+</main>

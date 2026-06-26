@@ -14,8 +14,8 @@
       </a>
 
       <!-- SEARCH -->
-      <label class="relative hidden w-full max-w-xs items-center sm:flex">
-        <span class="sr-only">Search movies</span>
+      <form (ngSubmit)="searchMovies()" class="relative hidden w-full max-w-xs items-center sm:flex">
+        <label class="sr-only" for="movie-search">Search movies</label>
 
         <svg class="pointer-events-none absolute left-4 h-5 w-5 text-white/50" viewBox="0 0 24 24" fill="none">
           <path
@@ -26,10 +26,14 @@
         </svg>
 
         <input
+          id="movie-search"
+          name="search"
+          [(ngModel)]="searchTerm"
+          (search)="searchMovies()"
           class="h-11 w-full rounded-full border border-white/10 bg-white/10 pl-12 pr-4 text-sm text-white outline-none transition placeholder:text-white/45 focus:border-amber-300/60 focus:bg-white/15 focus:ring-2 focus:ring-amber-400/20"
           type="search"
           placeholder="Search movies..." />
-      </label>
+      </form>
 
       <!-- LOGO (Desktop Only) -->
       <a
@@ -91,13 +95,13 @@
         </button>
 
         <!-- Language -->
-        <select
+        <!-- <select
           class="h-11 cursor-pointer rounded-full border border-white/10 bg-black/40 px-3 text-sm font-semibold text-white outline-none transition focus:border-amber-300/60"
           aria-label="Language selector">
           <option>EN</option>
           <option>KH</option>
           <option>CN</option>
-        </select>
+        </select> -->
 
       </div>
     </div>
@@ -116,7 +120,7 @@
         </a>
 
         <a
-          routerLink="/cinemas"
+          routerLink="/cinema"
           routerLinkActive="text-amber-300 border-b-2 border-amber-300"
           class="whitespace-nowrap text-white/70 hover:text-white transition pb-1 cursor-pointer">
           Cinemas
@@ -139,7 +143,7 @@
       </div>
 
       <!-- DROPDOWN -->
-      <details class="group relative shrink-0">
+      <!-- <details class="group relative shrink-0">
 
         <summary
           class="flex cursor-pointer list-none items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-bold text-white transition hover:border-amber-300/50 hover:bg-white/15 [&::-webkit-details-marker]:hidden">
@@ -182,7 +186,7 @@
 
         </div>
 
-      </details>
+      </details> -->
 
     </div>
   </div>
